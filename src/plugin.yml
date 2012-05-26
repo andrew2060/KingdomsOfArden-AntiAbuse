@@ -1,0 +1,5 @@
+name: Swagserv-AntiAbuse
+main: net.swagserv.andrew2060.antiabuse.AntiAbuse
+load: POSTWORLD
+version: 1.00
+description: Protects against various commonly abused features on minecraft servers, from donator flying to faction ally/enemy swap.
