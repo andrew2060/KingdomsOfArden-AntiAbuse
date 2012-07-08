@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class PvPFlyListener implements Listener{
-	@EventHandler(priority=EventPriority.LOWEST)
+	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onCombatEnter(EntityDamageByEntityEvent event) {
 		Entity target=event.getEntity();
 		Entity subject=event.getDamager();
@@ -18,10 +18,12 @@ public class PvPFlyListener implements Listener{
 			Boolean subjectflightstate = ((Player)subject).isFlying();
 			if(subjectflightstate == true) {
 				((Player)subject).setFlying(false);
+				((Player)subject).setAllowFlight(false);
 				((Player)subject).sendMessage(ChatColor.GRAY + "You have been exited out of flight mode due to entering combat");
 			}
 			if(targetflightstate == true) {
 				((Player)target).setFlying(false);
+				((Player)target).setAllowFlight(false);
 				((Player)target).sendMessage(ChatColor.GRAY + "You have been exited out of flight mode due to entering combat");
 
 			}
