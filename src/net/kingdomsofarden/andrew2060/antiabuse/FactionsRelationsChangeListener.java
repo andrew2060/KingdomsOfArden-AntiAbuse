@@ -1,4 +1,4 @@
-package net.swagserv.andrew2060.antiabuse;
+package net.kingdomsofarden.andrew2060.antiabuse;
 
 import java.util.Iterator;
 import java.util.Set;
