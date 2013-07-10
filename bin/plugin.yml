@@ -7,3 +7,8 @@ commands:
   fly:
     description: Activate to fly
     usage: /<command>
+permissions:
+  antiabuse.fly:
+    description: Gives access to fly 
+  antiabuse.bypass.fly:
+    description: Allows territorial bypass

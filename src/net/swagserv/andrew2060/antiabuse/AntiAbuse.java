@@ -1,6 +1,7 @@
 package net.swagserv.andrew2060.antiabuse;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,7 +20,7 @@ public class AntiAbuse extends JavaPlugin{
 		@Override
 		public boolean onCommand(CommandSender sender, Command command,
 				String label, String[] args) {
-			if(!sender.hasPermission("essentials.fly")) {
+			if(!sender.hasPermission("antiabuse.fly")) {
 				sender.sendMessage("No Permission!");
 				return true;
 			}
@@ -30,12 +31,19 @@ public class AntiAbuse extends JavaPlugin{
 			FPlayer fP = FPlayers.i.get(p);
 			Location loc = p.getLocation();
 			Faction f = Board.getFactionAt(loc);
-			if(!f.getTag().equalsIgnoreCase(fP.getFaction().getTag())) {
-				sender.sendMessage("Cannot use outside of your own territory");
-				return true;
+			if(!sender.hasPermission("antiabuse.bypass.fly")) {
+				if(!f.getTag().equalsIgnoreCase(fP.getFaction().getTag())) {
+					sender.sendMessage("Cannot use outside of your own territory");
+					return true;
+				}
 			}
 			boolean toggle = p.getAllowFlight();
 			p.setAllowFlight(!toggle);
+			if(!toggle == false) {
+				p.sendMessage(ChatColor.GRAY + "Exited Fly");
+			} else {
+				p.sendMessage(ChatColor.GRAY + "Fly Enabled");
+			}
 			return true;
 		}
 

@@ -18,10 +18,14 @@ import com.massivecraft.factions.Faction;
 public class PvPListener implements Listener{
 	@EventHandler(priority=EventPriority.MONITOR)
 	public void onCombatEnter(HeroEnterCombatEvent event) {
+	    
 		if(!(event.getTarget() instanceof Player)) {
 			return;
 		}
 		Player p = event.getHero().getPlayer();
+		if(p.hasPermission("antiabuse.bypass.fly")) {
+            return;
+        }
 		if(p.getAllowFlight()) {
 			p.sendMessage(ChatColor.GRAY + "Creative styled flight has been toggled off due to entering combat: use /fly to toggle it on again after leaving combat!");
 			p.setAllowFlight(false);
@@ -60,7 +64,7 @@ public class PvPListener implements Listener{
 		if(!(p.isFlying() || p.getAllowFlight())) {
 			return;
 		}
-		if(p.hasPermission("antiabuse.fly")) {
+		if(p.hasPermission("antiabuse.bypass.fly")) {
 			return;
 		}
 		//Now handle faction check
@@ -74,17 +78,5 @@ public class PvPListener implements Listener{
 		p.setAllowFlight(false);
 		p.setFlying(false);
 		p.sendMessage(ChatColor.GRAY + "Flying has been disabled due to flying in territory that is not your own");
-	}
-	@SuppressWarnings("deprecation")
-	@EventHandler(ignoreCancelled = true)
-	public void onSkillUseTwo(SkillUseEvent event) {
-		Player p = event.getPlayer();
-		Faction f = Board.getFactionAt(p.getLocation());
-		if(f.isSafeZone()) {
-			event.setCancelled(true);
-			p.sendMessage("Cannot use skills in safezone");
-			return;
-		}
-		return;
 	}
 }
