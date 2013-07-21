@@ -2,14 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Andrew/Java Projects/lib/Heroes.jar">
+	<classpathentry kind="lib" path="C:/Users/Andrew/Projects/lib/Heroes.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://ci.herocraftonline.com/job/Heroes/javadoc"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Andrew/Java Projects/lib/Essentials.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Andrew/Java Projects/lib/Factions.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Andrew/Java Projects/lib/Libkit.jar" sourcepath="C:/Users/Andrew/Java Projects/lib/src/BukkitSRC.zip">
+	<classpathentry kind="lib" path="C:/Users/Andrew/Projects/lib/Essentials.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Andrew/Projects/lib/Factions.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Andrew/Projects/lib/Libkit.jar" sourcepath="C:/Users/Andrew/Java Projects/lib/src/BukkitSRC.zip">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/Andrew/Java Projects/lib/Libkit-JD/"/>
 		</attributes>
