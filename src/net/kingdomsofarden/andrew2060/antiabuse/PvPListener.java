@@ -10,10 +10,10 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.herocraftonline.heroes.api.events.HeroEnterCombatEvent;
 import com.herocraftonline.heroes.api.events.SkillUseEvent;
-import com.massivecraft.factions.Board;
-import com.massivecraft.factions.FPlayer;
-import com.massivecraft.factions.FPlayers;
-import com.massivecraft.factions.Faction;
+import com.massivecraft.factions.entity.BoardColls;
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.factions.entity.UPlayer;
+import com.massivecraft.mcore.ps.PS;
 
 public class PvPListener implements Listener{
 	@EventHandler(priority=EventPriority.MONITOR)
@@ -68,15 +68,16 @@ public class PvPListener implements Listener{
 			return;
 		}
 		//Now handle faction check
-		FPlayer fPlayer = FPlayers.i.get(p);
-		Faction to = Board.getFactionAt(event.getTo());
-		if(to.getTag().equalsIgnoreCase(fPlayer.getFaction().getTag())) {
+		UPlayer fPlayer = UPlayer.get(p);
+		Faction to = BoardColls.get().getFactionAt(PS.valueOf(event.getTo()));
+		if(to.getId().equals(fPlayer.getFaction().getId())) {
 			return;
 		}
 		
 		//Now cancel
 		p.setAllowFlight(false);
 		p.setFlying(false);
+		p.teleport(p.getLocation().getWorld().getHighestBlockAt(p.getLocation()).getLocation());
 		p.sendMessage(ChatColor.GRAY + "Flying has been disabled due to flying in territory that is not your own");
 	}
 }

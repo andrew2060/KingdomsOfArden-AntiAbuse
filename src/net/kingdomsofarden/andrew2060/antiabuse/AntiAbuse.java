@@ -9,10 +9,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.massivecraft.factions.Board;
-import com.massivecraft.factions.FPlayer;
-import com.massivecraft.factions.FPlayers;
-import com.massivecraft.factions.Faction;
+import com.massivecraft.factions.entity.BoardColls;
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.factions.entity.UPlayer;
+import com.massivecraft.mcore.ps.PS;
 
 public class AntiAbuse extends JavaPlugin{
 	public class FlyCommandExecutor implements CommandExecutor {
@@ -28,11 +28,11 @@ public class AntiAbuse extends JavaPlugin{
 				return true;
 			}
 			Player p = (Player)sender;
-			FPlayer fP = FPlayers.i.get(p);
+			UPlayer fP = UPlayer.get(p);
 			Location loc = p.getLocation();
-			Faction f = Board.getFactionAt(loc);
+			Faction f = BoardColls.get().getFactionAt(PS.valueOf(loc));
 			if(!sender.hasPermission("antiabuse.bypass.fly")) {
-				if(!f.getTag().equalsIgnoreCase(fP.getFaction().getTag())) {
+				if(!f.getId().equals((fP.getFaction().getId()))) {
 					sender.sendMessage("Cannot use outside of your own territory");
 					return true;
 				}
